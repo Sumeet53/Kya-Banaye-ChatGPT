@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Kya Banaye - Smart Meal Decision</title>
+
+    <meta name="description"
+          content="Kya Banaye helps Indian households decide what to cook for breakfast, lunch and dinner.">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header class="app-header">
+        <div>
+            <h1>Kya Banaye?</h1>
+            <p>Let us decide what to cook today.</p>
+        </div>
+
+        <button id="settingsBtn" class="icon-btn" aria-label="Settings">
+            ⚙️
+        </button>
+    </header>
+
+
+    <main class="container">
+
+        <!-- MEAL SELECTOR -->
+
+        <section class="meal-selector">
+
+            <button class="meal-tab active" data-meal="breakfast">
+                🍳<span>Breakfast</span>
+            </button>
+
+            <button class="meal-tab" data-meal="lunch">
+                🍛<span>Lunch</span>
+            </button>
+
+            <button class="meal-tab" data-meal="dinner">
+                🌙<span>Dinner</span>
+            </button>
+
+        </section>
+
+
+        <!-- MAIN DECISION CARD -->
+
+        <section class="decision-card">
+
+            <div class="decision-heading">
+                <span id="mealTitle">Breakfast</span>
+                <span id="dateText"></span>
+            </div>
+
+            <div id="suggestionArea">
+
+                <div class="thinking">
+                    Let's decide...
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- TODAY'S MENU -->
+
+        <section class="section-card">
+
+            <div class="section-title">
+                <h2>Today's Menu</h2>
+            </div>
+
+            <div id="todayMenu" class="menu-list">
+                <p class="empty-text">
+                    Your cooked meals will appear here.
+                </p>
+            </div>
+
+        </section>
+
+
+        <!-- TOMORROW -->
+
+        <section class="section-card">
+
+            <div class="section-title">
+                <h2>Tomorrow</h2>
+                <button id="tomorrowBtn" class="small-btn">
+                    Decide
+                </button>
+            </div>
+
+            <div id="tomorrowMenu" class="menu-list">
+                <p class="empty-text">
+                    Plan tomorrow's meals when you're ready.
+                </p>
+            </div>
+
+        </section>
+
+
+        <!-- QUICK SETTINGS -->
+
+        <section class="section-card quick-settings">
+
+            <div class="section-title">
+                <h2>Quick Preferences</h2>
+            </div>
+
+            <div class="preference-row">
+
+                <label>
+                    Cooking time
+                    <select id="timePreference">
+                        <option value="any">No limit</option>
+                        <option value="quick">Quick</option>
+                        <option value="normal">Normal</option>
+                    </select>
+                </label>
+
+                <label>
+                    People
+                    <select id="peopleCount">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4" selected>4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8+</option>
+                    </select>
+                </label>
+
+            </div>
+
+        </section>
+
+
+        <!-- SETTINGS PANEL -->
+
+        <section id="settingsPanel" class="settings-panel hidden">
+
+            <div class="settings-header">
+                <h2>Settings</h2>
+
+                <button id="closeSettingsBtn" class="close-btn">
+                    ✕
+                </button>
+            </div>
+
+
+            <div class="setting-group">
+
+                <h3>Favourite Foods</h3>
+
+                <p class="setting-help">
+                    Add foods your family enjoys more often.
+                </p>
+
+                <div id="favouriteList" class="food-check-list"></div>
+
+            </div>
+
+
+            <div class="setting-group">
+
+                <h3>Foods to Avoid</h3>
+
+                <p class="setting-help">
+                    These foods will normally not be suggested.
+                </p>
+
+                <div id="avoidList" class="food-check-list"></div>
+
+            </div>
+
+
+            <div class="setting-group">
+
+                <h3>Ingredients Available Today</h3>
+
+                <p class="setting-help">
+                    Select the main ingredients currently available.
+                    The app will give them some preference.
+                </p>
+
+                <div id="ingredientList" class="food-check-list"></div>
+
+            </div>
+
+
+            <button id="saveSettingsBtn" class="primary-btn">
+                Save Preferences
+            </button>
+
+        </section>
+
+    </main>
+
+
+    <footer class="app-footer">
+
+        <p>
+            Suggestions are for convenience only and are not medical,
+            nutritional or professional advice. Please use your own
+            judgement when deciding what to prepare and eat.
+        </p>
+
+        <p>
+            © 2026 Opal Luna Labs. All Rights Reserved.
+        </p>
+
+        <p>
+            Powered &amp; Developed by Opal Luna Labs
+        </p>
+
+        <div class="footer-links">
+            <button id="aboutBtn">About App</button>
+            <button id="aboutUsBtn">About Us</button>
+        </div>
+
+    </footer>
+
+
+    <!-- ABOUT MODAL -->
+
+    <div id="aboutModal" class="modal hidden">
+
+        <div class="modal-box">
+
+            <button class="modal-close" data-close="aboutModal">
+                ✕
+            </button>
+
+            <h2>Kya Banaye?</h2>
+
+            <p>
+                Kya Banaye is a simple meal-decision app for Indian
+                households.
+            </p>
+
+            <p>
+                Instead of searching through hundreds of recipes,
+                the app helps you decide what to prepare for
+                breakfast, lunch and dinner.
+            </p>
+
+            <p>
+                It considers your preferences, cooking time,
+                available ingredients and recent meals to give
+                practical suggestions.
+            </p>
+
+            <h3>Important</h3>
+
+            <p>
+                Kya Banaye provides suggestions only. It does not
+                provide medical, dietary or nutritional advice.
+                Users should use their own judgement and consult
+                an appropriate professional where necessary.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- ABOUT US MODAL -->
+
+    <div id="aboutUsModal" class="modal hidden">
+
+        <div class="modal-box">
+
+            <button class="modal-close" data-close="aboutUsModal">
+                ✕
+            </button>
+
+            <h2>About Us</h2>
+
+            <p>
+                Kya Banaye is developed by
+                <strong>Opal Luna Labs</strong>.
+            </p>
+
+            <p>
+                Our aim is to create simple digital tools that solve
+                everyday problems without making them unnecessarily
+                complicated.
+            </p>
+
+            <p>
+                © 2026 Opal Luna Labs. All Rights Reserved.
+            </p>
+
+            <p>
+                Powered &amp; Developed by Opal Luna Labs
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <script src="app.js"></script>
+
+</body>
+</html>
